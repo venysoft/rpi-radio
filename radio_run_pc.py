@@ -8,6 +8,7 @@ player = vlc_instance.media_player_new()
 radio_station_number = 0  # this number is used to choose station from list stored in radio_list.py the number represents index  number the first station in list is 0
 notifi = True
 
+
 class radio:
     def __init__(self, name, address):
         self.name = name
@@ -21,9 +22,9 @@ def play():
     media = vlc_instance.media_new(radios[radio_station_number].address)
     print("playing "+radios[radio_station_number].name)
     player.set_media(media)
-    
+
     player.play()
-    ToastNotifier().show_toast("playing "+radios[radio_station_number].name)
+
 
 # this function stops the station if it's playing and plays it if ot's stopped
 
@@ -60,10 +61,16 @@ def next_station(_):
     play()
 
 
+def station_name(_):
+    # create windows notification with the name of curently playing station
+    ToastNotifier().show_toast("playing "+radios[radio_station_number].name)
+
+
 play()  # runs the default station on startup
 
 
 keyboard.on_press_key("f12", next_station)
 keyboard.on_press_key("f11", stop)
 keyboard.on_press_key("f10", previous_station)
+keyboard.on_press_key("f9", station_name)
 input()
