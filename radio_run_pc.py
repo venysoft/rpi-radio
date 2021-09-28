@@ -8,13 +8,6 @@ player = vlc_instance.media_player_new()
 radio_station_number = 0  # this number is used to choose station from list stored in radio_list.py the number represents index  number the first station in list is 0
 notifi = True
 
-
-class radio:
-    def __init__(self, name, address):
-        self.name = name
-        self.address = address
-
-
 # this function will stop alredy plaing station and change to the choosen sation
 def play():
     global media
